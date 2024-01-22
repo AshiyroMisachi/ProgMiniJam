@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Brique : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Tetris_Manager tetrisManager;
+
+    private void Start()
     {
-        
+        //Find Reference
+        tetrisManager = FindObjectOfType<Tetris_Manager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    //Spawn Tetriminos if touch deadline or other brick
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        Brique brique = collision.gameObject.GetComponent<Brique>();
+        if (brique != null && brique.transform.parent != transform.parent)
+        {
+            tetrisManager.CreateTetrominos();
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        tetrisManager.currentTetrominos.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        tetrisManager.CreateTetrominos();
     }
 }
