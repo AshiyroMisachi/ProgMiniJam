@@ -6,6 +6,7 @@ public class TrampolineBehaviour : MonoBehaviour
 {
     public Transform myTransform, limitLeft, limitRight;
     public float speed;
+    public Rigidbody2D myRigidbody;
 
     // Start is called before the first frame update
     void Start()
@@ -20,16 +21,21 @@ public class TrampolineBehaviour : MonoBehaviour
         {
             if (myTransform.position.x > limitLeft.position.x)
             {
-                myTransform.position += Vector3.left * speed;
+                myRigidbody.velocity = Vector2.left * speed; 
             }
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             if (myTransform.position.x < limitRight.position.x)
             {
-                myTransform.position += Vector3.right * speed;
+                myRigidbody.velocity = Vector2.right * speed;
             }
+        }
+
+        else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow) || !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
+        {
+            myRigidbody.velocity = new Vector2(0, 0);
         }
     }
 }
