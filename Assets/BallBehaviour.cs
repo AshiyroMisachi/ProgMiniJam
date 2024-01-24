@@ -17,7 +17,7 @@ public class BallBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(myRigidbody.velocity);
+        //Debug.Log(myRigidbody.velocity);
 
         myRigidbody.velocity = myRigidbody.velocity.normalized * speed;
     }
