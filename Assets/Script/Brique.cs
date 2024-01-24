@@ -15,6 +15,7 @@ public class Brique : MonoBehaviour
     //Spawn Tetriminos if touch deadline or other brick
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Test");
         Brique brique = collision.gameObject.GetComponent<Brique>();
         if (brique != null && brique.transform.parent != transform.parent && transform.parent == tetrisManager.currentTetrominos)
         {
