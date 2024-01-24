@@ -11,6 +11,7 @@ public class Tetris_Manager : MonoBehaviour
     public float speedTetriminosFallValue;
     public float speedTetriminosTranslate;
     public bool[] timerMovementValue;
+    public float protecSpawn;
 
     void Start()
     {
@@ -25,7 +26,11 @@ public class Tetris_Manager : MonoBehaviour
 
     public void CreateTetrominos()
     {
-        currentTetrominos = Instantiate(tetriminos[Random.Range(0, tetriminos.Length)], spawnTetriminos.transform.position, Quaternion.identity);
+        if (protecSpawn <= 3.5f)
+        {
+            currentTetrominos = Instantiate(tetriminos[Random.Range(0, tetriminos.Length)], spawnTetriminos.transform.position, Quaternion.identity);
+        }
+
     }
 
     public void MovementTetriminos()
@@ -34,7 +39,9 @@ public class Tetris_Manager : MonoBehaviour
         if (timerMovementValue[0])
         {
             //currentTetrominos.transform.position += Vector3.down * speedTetriminosFall;
-            currentTetrominos.GetComponent<Rigidbody2D>().velocity = Vector2.down * speedTetriminosFall;
+            //currentTetrominos.GetComponent<Rigidbody2D>().velocity = Vector2.down * speedTetriminosFall;
+            currentTetrominos.transform.position += Vector3.down * speedTetriminosFall;
+            protecSpawn = currentTetrominos.transform.position.y;
             StartCoroutine(ResetTimerMovement(0));
         }
 
@@ -43,13 +50,13 @@ public class Tetris_Manager : MonoBehaviour
             speedTetriminosFall = speedTetriminosFallValue * 2;
         }
 
-        /*
+
         if (currentTetrominos.transform.position.y <= 0)
         {
             currentTetrominos.transform.position = new Vector2(currentTetrominos.transform.position.x, 0);
             CreateTetrominos();
             return;
-        }*/
+        }
 
         //Move Left
         if (Input.GetKey(KeyCode.A) && timerMovementValue[1])

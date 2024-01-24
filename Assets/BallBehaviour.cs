@@ -17,7 +17,7 @@ public class BallBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // permet de garder la même speed en continu
+        // permet de garder la mï¿½me speed en continu
         //myRigidbody.velocity = myRigidbody.velocity.normalized * speed;
     }
     public void OnCollisionEnter2D(Collision2D collision)

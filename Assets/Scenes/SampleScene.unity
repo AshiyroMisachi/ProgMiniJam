@@ -309,7 +309,7 @@ MonoBehaviour:
   - {fileID: 3189602818466917516, guid: f5a239d111f0afb488e82ec2e4b33ae5, type: 3}
   currentTetrominos: {fileID: 0}
   spawnTetriminos: {fileID: 613922668}
-  speedTetriminosFallValue: 1
+  speedTetriminosFallValue: 0.25
   speedTetriminosTranslate: 0.25
   timerMovementValue: 01010101010101010101
 --- !u!1 &339299661
