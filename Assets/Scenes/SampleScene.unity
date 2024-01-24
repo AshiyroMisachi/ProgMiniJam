@@ -310,8 +310,9 @@ MonoBehaviour:
   currentTetrominos: {fileID: 0}
   spawnTetriminos: {fileID: 613922668}
   speedTetriminosFallValue: 0.25
-  speedTetriminosTranslate: 0.25
+  speedTetriminosTranslate: 0.5
   timerMovementValue: 01010101010101010101
+  protecSpawn: 0
 --- !u!1 &339299661
 GameObject:
   m_ObjectHideFlags: 0

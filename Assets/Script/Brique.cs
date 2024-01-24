@@ -16,9 +16,8 @@ public class Brique : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         Brique brique = collision.gameObject.GetComponent<Brique>();
-        if (brique != null && brique.transform.parent != transform.parent && transform.parent == tetrisManager.currentTetrominos.transform)
+        if (brique != null && brique.transform.parent != transform.parent && transform.parent == tetrisManager.currentTetrominos.transform && collision.contactCount > 2)
         {
-            Debug.Log("Test");
             tetrisManager.CreateTetrominos();
         }
     }
