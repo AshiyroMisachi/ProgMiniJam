@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class BallBehaviour : MonoBehaviour
 {
     public float speed, direction;
 
     public Rigidbody2D myRigidbody;
+
+    public TextMeshProUGUI victoryText;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +30,23 @@ public class BallBehaviour : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
-        
+
+        if (collision.gameObject.GetComponent<Player>() != null)
+        {
+            victoryText.gameObject.SetActive(true);
+
+            if (collision.gameObject.tag == "PlayerA")
+            {
+                victoryText.text = "JOUEUR B VICTORY";
+            }
+            else if (collision.gameObject.tag == "PlayerB")
+            {
+                victoryText.text = "JOUEUR A VICTORY";
+            }
+
+            Time.timeScale = 0;
+        }
+
     }
 
 }
