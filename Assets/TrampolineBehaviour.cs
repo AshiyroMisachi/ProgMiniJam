@@ -38,4 +38,18 @@ public class TrampolineBehaviour : MonoBehaviour
             myRigidbody.velocity = new Vector2(0, 0);
         }
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Rigidbody2D>())
+        {
+            Vector2 transformVector2 = new Vector2(transform.position.x, transform.position.y);
+
+            Vector3 direction = collision.contacts[0].point - transformVector2;
+
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = direction.normalized * speed; 
+            
+            //new Vector2(((collision.contacts[0].point.x - transform.position.x) * speed), speed) ;
+        }
+    }
 }

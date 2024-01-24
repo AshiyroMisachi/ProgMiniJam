@@ -17,8 +17,16 @@ public class BallBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(myRigidbody.velocity);
-
-        myRigidbody.velocity = myRigidbody.velocity.normalized * speed;
+        // permet de garder la m�me speed en continu
+        //myRigidbody.velocity = myRigidbody.velocity.normalized * speed;
     }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Brique>() != null)
+        {
+            Destroy(collision.gameObject);
+        }
+        
+    }
+
 }
