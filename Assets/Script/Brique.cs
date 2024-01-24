@@ -13,12 +13,18 @@ public class Brique : MonoBehaviour
     }
 
     //Spawn Tetriminos if touch deadline or other brick
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
         Brique brique = collision.gameObject.GetComponent<Brique>();
-        if (brique != null && brique.transform.parent != transform.parent && transform.parent == tetrisManager.currentTetrominos.transform && collision.contactCount > 2)
+
+        if (brique != null && brique.transform.parent != transform.parent && transform.parent == tetrisManager.currentTetrominos.transform)
         {
-            tetrisManager.CreateTetrominos();
+            Debug.Log(Vector3.Distance(transform.position, collision.transform.position));
+            var distance = Vector3.Distance(transform.position, collision.transform.position);
+            if (distance <= 0.5f)
+                tetrisManager.CreateTetrominos();
+
+
         }
     }
 
